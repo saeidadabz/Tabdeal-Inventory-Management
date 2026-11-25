@@ -1,0 +1,1 @@
+﻿# Tabdeal Inventory Management
