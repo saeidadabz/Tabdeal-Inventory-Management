@@ -16,6 +16,14 @@ class ProductPagination(PageNumberPagination):
     max_page_size = 100
 
 
+@extend_schema_view(
+    list=extend_schema(tags=["Products"], summary="List products"),
+    retrieve=extend_schema(tags=["Products"], summary="Get a product"),
+    create=extend_schema(tags=["Products"], summary="Create a product"),
+    update=extend_schema(tags=["Products"], summary="Replace a product"),
+    partial_update=extend_schema(tags=["Products"], summary="Update a product"),
+    destroy=extend_schema(tags=["Products"], summary="Delete a product"),
+)
 class ProductViewSet(viewsets.ModelViewSet):
 
     serializer_class = ProductSerializer
@@ -44,14 +52,14 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     ordering = ["-created_at"]
 
-    http_method_names = [
-        "get",
-        "post",
-        "put",
-        "patch",
-        "head",
-        "options",
-    ]
+    # http_method_names = [
+    #     "get",
+    #     "post",
+    #     "put",
+    #     "patch",
+    #     "head",
+    #     "options",
+    # ]
 
     def get_queryset(self):
         return Product.objects.all()
